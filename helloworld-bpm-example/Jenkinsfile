@@ -1,0 +1,25 @@
+pipeline {
+
+    agent {
+        docker { 
+          image 'greghodgkinson/jenkins-buildconductor-bpm'                 
+        }
+    }
+    
+    stages {     
+        
+        stage('Build') {
+            steps {
+             
+            	sh "..."               
+            }
+        }
+        
+        stage('Publish to UCD') {
+        	steps {
+        	
+        	sh "..."               
+            }                        	 	
+        }
+    }
+}
