@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
              
-            	sh '/buildconductor/bpm/run-automation-bpm.sh assembleApp HW 0.55 Main 10.0.10.166 20005 ghodgkinson ghodgkinson Staging ghodgkinson ghodgkinson ${BUILD_NUMBER} ${BUILD_URL} ${NODE_NAME}'               
+            	sh '/buildconductor/bpm/run-automation-bpm.sh build HW 0.55 Main 10.0.10.166 20005 ghodgkinson ghodgkinson Staging ghodgkinson ghodgkinson ${BUILD_NUMBER} ${BUILD_URL} ${NODE_NAME}'               
             }
         }
         
