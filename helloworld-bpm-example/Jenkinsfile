@@ -1,10 +1,12 @@
 pipeline {
 
-    agent buildconductor-bpm //{
+    agent {
+    
+    	label 'buildconductor-bpm'
     //    docker { 
     //      image 'greghodgkinson/jenkins-buildconductor-bpm'                 
     //    }
-    //}
+    }
     
     stages {     
         
