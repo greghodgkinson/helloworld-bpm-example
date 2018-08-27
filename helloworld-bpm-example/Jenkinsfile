@@ -11,10 +11,8 @@ pipeline {
     stages {     
         
         stage('Build') {
-            steps {
-            
-            
-            	def userInput = true
+        
+        def userInput = true
 def didTimeout = false
 try {
     timeout(time: 15, unit: 'SECONDS') { // change to a convenient timeout for you
@@ -46,6 +44,11 @@ node {
         currentBuild.result = 'FAILURE'
     } 
 }
+        
+            steps {
+            
+            
+            	
                                
             	sh '/buildconductor/bpm/run-automation-bpm.sh build HW ${snapshot} Main 10.0.10.166 20005 ghodgkinson ghodgkinson Staging ghodgkinson passw0rd ${BUILD_NUMBER} ${BUILD_URL} ${NODE_NAME}'               
             }
