@@ -21,8 +21,8 @@ pipeline {
         stage('Publish to UCD') {
         	steps {
         	
-        	sh "Can we see the offline package file?"   
-        	sh "ls -la ${WORKSPACE}"               
+        	sh 'echo "Can we see the offline package file?"'   
+        	sh 'ls -la ${WORKSPACE}'              
             }                        	 	
         }
     }
