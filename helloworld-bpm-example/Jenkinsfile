@@ -14,14 +14,15 @@ pipeline {
         
             steps {
                                
-            	sh '/buildconductor/bpm/run-automation-bpm.sh build HW 0.60 Main 10.0.10.166 20005 ghodgkinson ghodgkinson Staging ghodgkinson passw0rd ${BUILD_NUMBER} ${BUILD_URL} ${NODE_NAME}'               
+            	sh '/buildconductor/bpm/run-automation-bpm.sh build HW 0.61 Main 10.0.10.166 20005 ghodgkinson ghodgkinson Staging ghodgkinson passw0rd ${BUILD_NUMBER} ${BUILD_URL} ${NODE_NAME}'               
             }
         }
         
         stage('Publish to UCD') {
         	steps {
         	
-        	sh "echo Publish to UCD comes next..."               
+        	sh "Can we see the offline package file?"   
+        	sh "ls -la ${WORKSPACE}"               
             }                        	 	
         }
     }
