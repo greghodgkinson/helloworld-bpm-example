@@ -22,7 +22,7 @@ pipeline {
         	steps {
         	
         	sh 'echo "Can we see the offline package file?"'   
-        	sh 'ls -la ${WORKSPACE}'              
+        	sh 'ls -la ${WORKSPACE}/output'              
             }                        	 	
         }
     }
