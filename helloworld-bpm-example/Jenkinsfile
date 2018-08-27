@@ -14,7 +14,7 @@ pipeline {
         
             steps {
                                
-            	sh '/buildconductor/bpm/run-automation-bpm.sh build HW 0.63 Main 10.0.10.166 20005 ghodgkinson ghodgkinson Staging ghodgkinson passw0rd ${BUILD_NUMBER} ${BUILD_URL} ${NODE_NAME}'               
+            	sh '/buildconductor/bpm/run-automation-bpm.sh build HW 0.64 Main 10.0.10.166 20005 ghodgkinson ghodgkinson Staging ghodgkinson passw0rd ${BUILD_NUMBER} ${BUILD_URL} ${NODE_NAME}'               
             }
         }
         
@@ -23,7 +23,7 @@ pipeline {
         	
         	sh 'echo "Can we see the offline package file?"'   
         	sh 'ls -la ${WORKSPACE}/output'   
-        	sh '/buildconductor/bpm/run-automation-bpm.sh uploadToUcd "HelloWorld Process App BPM8.5" ${BUILD_NUMBER} ${WORKSPACE}/output *.zip admin admin ${BUILD_URL}'            
+        	sh '/buildconductor/bpm/run-automation-bpm.sh uploadToUcd "HelloWorld Process App BPM8.5" ${BUILD_NUMBER} ${WORKSPACE}/output *.zip admin admin ${BUILD_URL} https://linuxtarget1.ad.prolifics.com:8446'            
             }                        	 	
         }
     }
