@@ -22,7 +22,8 @@ pipeline {
         	steps {
         	
         	sh 'echo "Can we see the offline package file?"'   
-        	sh 'ls -la ${WORKSPACE}/output'              
+        	sh 'ls -la ${WORKSPACE}/output'   
+        	sh '/buildconductor/bpm/run-automation-bpm.sh uploadToUcd "HelloWorld Process App BPM8.5" ${BUILD_NUMBER} ${WORKSPACE}/output *.zip admin admin ${BUILD_URL}'            
             }                        	 	
         }
     }
