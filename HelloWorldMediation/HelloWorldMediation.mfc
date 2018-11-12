@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:HelloService="http://HelloService/HelloService" xmlns:HelloWorld="http://HelloWorldLibrary/HelloWorld" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" name="HelloWorldMediation" targetNamespace="http://HelloWorldMediation/HelloWorldMediation">
+  <import location="HelloWorld.wsdl" namespace="http://HelloWorldLibrary/HelloWorld"/>
+  <import location="HelloService_HelloService.wsdl" namespace="http://HelloService/HelloService"/>
+  <reference name="HelloServicePartner" portType="HelloService:HelloService"/>
+  <interface portType="HelloWorld:HelloWorld">
+    <operation name="callHello">
+      <requestFlow mfcex:showInputResponse="false" mfcex:showInputFault="false">
+        <node displayName="callHello : HelloWorld" name="HelloWorld_callHello_Input" type="Input">
+          <outputTerminal type="HelloWorld:callHelloRequestMsg">
+            <wire targetNode="input_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="getHello : HelloServicePartner" name="HelloServicePartner_getHello_Callout" type="Callout">
+          <property name="referenceName" value="HelloServicePartner"/>
+          <property name="operationName" value="getHello"/>
+          <inputTerminal type="HelloService:getHelloRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="xslt/input_map_req_1.xsl"/>
+          <property name="XMXMap" value="xslt/input_map_req_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="HelloWorld:callHelloRequestMsg"/>
+          <outputTerminal type="HelloService:getHelloRequestMsg">
+            <wire targetNode="HelloServicePartner_getHello_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <node displayName="getHello : HelloServicePartner" name="HelloServicePartner_getHello_CalloutResponse" type="CalloutResponse">
+          <property name="referenceName" value="HelloServicePartner"/>
+          <property name="operationName" value="getHello"/>
+          <outputTerminal type="HelloService:getHelloResponseMsg">
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+          <failTerminal type="HelloService:getHelloRequestMsg"/>
+        </node>
+        <node displayName="callHello : HelloWorld" name="HelloWorld_callHello_InputResponse" type="InputResponse">
+          <inputTerminal type="HelloWorld:callHelloResponseMsg"/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="xslt/output_map_res_1.xsl"/>
+          <property name="XMXMap" value="xslt/output_map_res_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="HelloService:getHelloResponseMsg"/>
+          <outputTerminal type="HelloWorld:callHelloResponseMsg">
+            <wire targetNode="HelloWorld_callHello_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </responseFlow>
+      <errorFlow mfcex:showInputResponse="false">
+        <node displayName="callHello : HelloWorld" name="HelloWorld_callHello_ErrorInput" type="ErrorInput">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="ErrorHandling"/>
+          </outputTerminal>
+        </node>
+        <node name="ErrorHandling" type="Subflow">
+          <property name="subflowFile" value="ErrorHandling.subflow"/>
+          <property name="subflowName" value="{http://HelloWorldMediation}ErrorHandling"/>
+          <inputTerminal type="XMLSchema:anyType"/>
+          <failTerminal/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="HelloService" targetNamespace="http://HelloService/HelloService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://HelloService/HelloService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+    <xsd:schema targetNamespace="http://HelloService/HelloService">
+      <xsd:element name="getHello">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" nillable="true" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getHelloResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="output1" nillable="true" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getHelloRequestMsg">
+    <wsdl:part element="tns:getHello" name="getHelloParameters"/>
+  </wsdl:message>
+    <wsdl:message name="getHelloResponseMsg">
+    <wsdl:part element="tns:getHelloResponse" name="getHelloResult"/>
+  </wsdl:message>
+    <wsdl:portType name="HelloService">
+    <wsdl:operation name="getHello">
+      <wsdl:input message="tns:getHelloRequestMsg" name="getHelloRequest"/>
+      <wsdl:output message="tns:getHelloResponseMsg" name="getHelloResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloServiceExport1_HelloServiceHttpBinding" type="tns:HelloService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getHello">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getHelloRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloServiceExport1_HelloServiceHttpService">
+    <wsdl:port binding="tns:HelloServiceExport1_HelloServiceHttpBinding" name="HelloService_HelloServiceHttpPort">
+      <soap:address location="http://localhost:9080/HelloServiceWeb/sca/HelloService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

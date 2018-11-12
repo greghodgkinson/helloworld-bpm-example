@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><body xmlns:io6="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:out3="wsdl.http://HelloWorldLibrary/HelloWorld" xmlns:out2="http://HelloWorldLibrary" xmlns:io5="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:io4="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:out="http://HelloWorldLibrary/HelloWorld" xmlns:io2="http://www.ibm.com/websphere/sibx/smo/v6.0.1" xmlns:io3="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0" xmlns:io="http://www.w3.org/2003/05/soap-envelope">
+  <out:callHelloResponse>
+    <result>output1</result>
+  </out:callHelloResponse>
+</body>

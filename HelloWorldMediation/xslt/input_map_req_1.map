@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot domainID="com.ibm.msl.mapping.xml" targetNamespace="http://HelloWorldMediation/xslt/input_map_req_1" version="7.0.0" xmlns="http://www.ibm.com/2008/ccl/Mapping" xmlns:map="http://HelloWorldMediation/xslt/input_map_req_1">
+    <input correlationContext="" message="{http://HelloWorldLibrary/HelloWorld}callHelloRequestMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <output correlationContext="" message="{http://HelloService/HelloService}getHelloRequestMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <imports>
+        <import kind="xml" location="input_map_req_1.xml"/>
+    </imports>
+    <mappingDeclaration name="input_map_req_1">
+        <input path="body"/>
+        <output path="body"/>
+        <function ref="concat">
+            <input path="callHello/fullname/title" var="title"/>
+            <input path="callHello/fullname/firstName" var="firstName"/>
+            <input path="callHello/fullname/lastName" var="lastName"/>
+            <output path="getHello/name"/>
+            <property key="defaultDelimiter" value=" "/>
+        </function>
+    </mappingDeclaration>
+</mappingRoot>

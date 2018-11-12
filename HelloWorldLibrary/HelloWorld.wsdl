@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="HelloWorld" targetNamespace="http://HelloWorldLibrary/HelloWorld" xmlns:bons1="http://HelloWorldLibrary" xmlns:tns="http://HelloWorldLibrary/HelloWorld" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+    <xsd:schema targetNamespace="http://HelloWorldLibrary/HelloWorld">
+      <xsd:import namespace="http://HelloWorldLibrary" schemaLocation="FullName.xsd"/>
+      <xsd:element name="callHello">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="fullname" nillable="true" type="bons1:FullName"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="callHelloResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" nillable="true" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+    <wsdl:message name="callHelloRequestMsg">
+    <wsdl:part element="tns:callHello" name="callHelloParameters"/>
+  </wsdl:message>
+    <wsdl:message name="callHelloResponseMsg">
+    <wsdl:part element="tns:callHelloResponse" name="callHelloResult"/>
+  </wsdl:message>
+    <wsdl:portType name="HelloWorld">
+    <wsdl:operation name="callHello">
+      <wsdl:input message="tns:callHelloRequestMsg" name="callHelloRequest"/>
+      <wsdl:output message="tns:callHelloResponseMsg" name="callHelloResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

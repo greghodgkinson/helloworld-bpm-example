@@ -1,0 +1,11 @@
+* SMAP
+output_map_res_1.xsl
+XMLMAP
+*S XMLMAP
+*F
++ 1 output_map_res_1.map
+/HelloWorldMediation/xslt/output_map_res_1.map
+*L
+1:49,17
+2:76,10
+*E

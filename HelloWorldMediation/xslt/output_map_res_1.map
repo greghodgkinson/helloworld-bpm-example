@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot domainID="com.ibm.msl.mapping.xml" targetNamespace="http://HelloWorldMediation/xslt/output_map_res_1" version="7.0.0" xmlns="http://www.ibm.com/2008/ccl/Mapping" xmlns:map="http://HelloWorldMediation/xslt/output_map_res_1">
+    <input correlationContext="" message="{http://HelloService/HelloService}getHelloResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <output correlationContext="" message="{http://HelloWorldLibrary/HelloWorld}callHelloResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <imports>
+        <import kind="xml" location="output_map_res_1.xml"/>
+    </imports>
+    <mappingDeclaration name="output_map_res_1">
+        <input path="body"/>
+        <output path="body"/>
+        <move>
+            <input path="getHelloResponse/output1"/>
+            <output path="callHelloResponse/result"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

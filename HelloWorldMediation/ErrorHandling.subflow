@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" name="ErrorHandling" targetNamespace="http://HelloWorldMediation">
+  <subflow>
+    <node name="in" type="In">
+      <outputTerminal type="XMLSchema:anyType">
+        <wire targetNode="Fail1"/>
+      </outputTerminal>
+    </node>
+    <node name="Fail1" type="Fail">
+      <inputTerminal/>
+    </node>
+  </subflow>
+</mediationFlow>
