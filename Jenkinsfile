@@ -7,7 +7,14 @@ pipeline {
      //    }			
      }			
      			
-     stages {     			
+     stages {   
+           
+           stage('Checkout'){
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '/var/jenkins/workspace/helloworld-bpma-example/load']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/greghodgkinson/helloworld-bpma-example.git']]])
+            }
+          
+       }     
          			
          stage('Build') {      			
          			
